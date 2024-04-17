@@ -30,7 +30,7 @@
                         <a class="nav-link active" aria-current="page" href="inicio.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <div class="dropdown">
+                        <div class="dropdown" style="margin-top:1.5px">
                             <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false" style="color: white;">
                                 Productos
@@ -41,9 +41,6 @@
                                 <li><a class="dropdown-item" href="accsesorios.html">Accesorios</a></li>
                             </ul>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Servicios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="quienesSomos.html">Quienes Somos</a>
@@ -75,31 +72,26 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Iniciar Sesion</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <label for="exampleInputEmail1" class="form-label">Correo</label>
                             <input type="email" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
                             <input type="password" class="form-control" id="exampleInputPassword1">
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            <label class="form-check-label" for="exampleCheck1">Mantener sesión iniciada.</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -206,10 +198,9 @@
                     <div class="card" style="width: 18rem;">
                         <img src="productos/card/card_1.png" class="card-img-top" alt="...">
                         <div class="card-body ">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">Accesorios</h5>
+                            <p class="card-text">Descubre nuestra selección de accesorios de baloncesto de alta calidad para elevar tu juego al máximo nivel.</p>
+                            <a href="accsesorios.html" class="btn btn-primary">Vamos</a>
                         </div>
                     </div>
                 </div>
@@ -217,10 +208,9 @@
                     <div class="card" style="width: 18rem;">
                         <img src="productos/card/card_2.png" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">¿Quienes somos?</h5>
+                            <p class="card-text">Somos una comunidad dedicada al baloncesto, ofreciendo productos de calidad y contenido inspirador para jugadores de todos los niveles.</p>
+                            <a href="quienesSomos.html" class="btn btn-primary">Vamos</a>
                         </div>
                     </div>
                 </div>
@@ -228,10 +218,9 @@
                     <div class="card" style="width: 18rem;">
                         <img src="productos/card/card_3.png" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">Balones</h5>
+                            <p class="card-text">Encuentra el balón perfecto para tu juego entre nuestra variedad de balones diseñados para un rendimiento excepcional en la cancha.</p>
+                            <a href="balones.html" class="btn btn-primary">Vamos</a>
                         </div>
                     </div>
                 </div>
@@ -244,7 +233,7 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
         data-bs-backdrop="false">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrito</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body" id="contenedor-carrito">
