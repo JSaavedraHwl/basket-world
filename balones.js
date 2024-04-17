@@ -76,12 +76,16 @@ function elementoCarrito(item) {
 document.addEventListener('DOMContentLoaded', function () {
     agregarAlResumen();
     const carrito = JSON.parse(localStorage.getItem('carrito'));
-    if(carrito) {
+    if (carrito) {
         itemsCarrito = carrito;
         if (itemsCarrito.length > 0) {
             recargarCarrito();
         }
     }
+
+    let resumen = document.getElementById('resumen-carrito');
+    htmlResumen = actualizarCarrito(valores);
+    resumen.innerHTML = htmlResumen;
     let tarjetasContainer = document.getElementById('tarjetas-container');
     if (tarjetasContainer) {
         balones.forEach(function (balon) {
@@ -89,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
             tarjetasContainer.innerHTML += tarjetaHTML;
         });
     }
-    
+
 
 
     let tarjetas = document.querySelectorAll('.btn-comprar');
@@ -104,9 +108,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     let eliminarCarrito = document.getElementById('limpiar-carro');
-    if(eliminarCarrito) {
+    if (eliminarCarrito) {
         console.log('se encontro el boton limpiar')
-        eliminarCarrito.addEventListener('click',(e)=> {
+        eliminarCarrito.addEventListener('click', (e) => {
             e.preventDefault();
             itemsCarrito = [];
             recargarCarrito();
@@ -120,25 +124,30 @@ function actualizarCarrito(valores) {
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Resumen del Carrito</h5>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Subtotal
-                    <span class="badge bg-primary">$${valores.montoTotal}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Envío
-                    <span class="badge bg-primary">$${valores.envio ? valores.envio : 0}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Total
-                    <span class="badge bg-primary">$${valores.montoTotal + valores.envio}</span>
-                </li>
+            <ul class="list-group list-group-flush" id="lista-valores">         
             </ul>
             <button type="button" class="btn btn-success mt-3">Finalizar Compra</button>
             <button type="button" class="btn btn-danger mt-3" id="limpiar-carro">Limpiar carrito</button>
         </div>
     </div>
     `;
+}
+function recargarValores() {
+    const listaValores = document.getElementById('lista-valores');
+    if (listaValores) {
+        listaValores.innerHTML = `<li class="list-group-item d-flex justify-content-between align-items-center">
+        Subtotal
+        <span class="badge bg-primary">$${valores.montoTotal}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Envío
+        <span class="badge bg-primary">$${valores.envio ? valores.envio : 0}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Total
+        <span class="badge bg-primary">$${valores.montoTotal + valores.envio}</span>
+    </li>`
+    }
 }
 
 function agregarACarrito(balon) {
@@ -171,7 +180,7 @@ function calcularEnvio() {
     if (valores.montoTotal >= 50000) {
         valores.envio = 0;
     }
-    else if(valores.montoTotal == 0) {
+    else if (valores.montoTotal == 0) {
         valores.envio = 0;
     }
     else {
@@ -180,9 +189,8 @@ function calcularEnvio() {
 }
 
 function agregarAlResumen() {
-    
+
     calcularEnvio();
-    let resumen = document.getElementById('resumen-carrito');
-    htmlResumen = actualizarCarrito(valores);
-    resumen.innerHTML = htmlResumen;
+    
+    recargarValores();
 }
