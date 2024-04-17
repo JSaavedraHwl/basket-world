@@ -74,9 +74,13 @@ function elementoCarrito(item) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    itemsCarrito = JSON.parse(localStorage.getItem('carrito'));
-    if (itemsCarrito.length > 0) {
-        recargarCarrito();
+    agregarAlResumen();
+    const carrito = JSON.parse(localStorage.getItem('carrito'));
+    if(carrito) {
+        itemsCarrito = carrito;
+        if (itemsCarrito.length > 0) {
+            recargarCarrito();
+        }
     }
     let tarjetasContainer = document.getElementById('tarjetas-container');
     if (tarjetasContainer) {
@@ -85,15 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
             tarjetasContainer.innerHTML += tarjetaHTML;
         });
     }
-    let eliminarCarrito = document.getElementById('limpiar-carro');
-    if(eliminarCarrito) {
-        eliminarCarrito.addEventListener('click',(e)=> {
-            e.preventDefault();
-            itemsCarrito = [];
-            recargarCarrito();
-            guardarCarrito();
-        })
-    }
+    
 
 
     let tarjetas = document.querySelectorAll('.btn-comprar');
@@ -107,7 +103,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-
+    let eliminarCarrito = document.getElementById('limpiar-carro');
+    if(eliminarCarrito) {
+        console.log('se encontro el boton limpiar')
+        eliminarCarrito.addEventListener('click',(e)=> {
+            e.preventDefault();
+            itemsCarrito = [];
+            recargarCarrito();
+            guardarCarrito();
+        })
+    }
 });
 
 function actualizarCarrito(valores) {
