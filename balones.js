@@ -101,15 +101,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    let tarjetas = document.querySelectorAll('.btn-comprar');
-    if (tarjetas) {
-        tarjetas.forEach(function (tarjeta, index) {
-            tarjeta.addEventListener('click', function (e) {
-                e.preventDefault();
-                let balon = balones[index];
-                agregarACarrito(balon);
+    if (document.title === 'Balones') {
+        let tarjetas = document.querySelectorAll('.btn-comprar');
+        if (tarjetas) {
+            tarjetas.forEach(function (tarjeta, index) {
+                tarjeta.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    let balon = balones[index];
+                    agregarACarrito(balon);
+                });
             });
-        });
+        }
+    }
+
+    if (document.title === 'Camisas') {
+        let tarjetasCamisas = document.querySelectorAll('.btn-comprar');
+        if (tarjetasCamisas) {
+            tarjetasCamisas.forEach(function (tarjeta, index) {
+                tarjeta.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    let balon = camisas[index];
+                    agregarACarrito(balon);
+                });
+            });
+        }
+    }
+    if (document.title === 'Accesorios') {
+        let tarjetasAccesorios = document.querySelectorAll('.btn-comprar');
+        if (tarjetasAccesorios) {
+            tarjetasAccesorios.forEach(function (tarjeta, index) {
+                tarjeta.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    let balon = accesorios[index];
+                    agregarACarrito(balon);
+                });
+            });
+        }
     }
 
     let eliminarCarrito = document.getElementById('limpiar-carro');
@@ -203,7 +230,7 @@ function calcularEnvio() {
 function agregarAlResumen() {
 
     calcularEnvio();
-    
+
     recargarValores();
 }
 
@@ -212,46 +239,46 @@ function agregarAlResumen() {
 accesorios = [
     {
         nombre: 'Aro con malla',
-        descripcion:'Aro resistente con malla duradera para practicar tus tiros y mejorar tu precisión en cada juego y entrenamiento.',
-        urlImg:'productos/accesorios/acc_1.png',
+        descripcion: 'Aro resistente con malla duradera para practicar tus tiros y mejorar tu precisión en cada juego y entrenamiento.',
+        urlImg: 'productos/accesorios/acc_1.png',
         precio: 10000.0
     },
     {
         nombre: 'Muñequera',
-        descripcion:'Muñequera de diseño elegante en rojo con línea blanca, brindando estilo y soporte durante tus partidos intensos.',
-        urlImg:'productos/accesorios/acc_2.png',
+        descripcion: 'Muñequera de diseño elegante en rojo con línea blanca, brindando estilo y soporte durante tus partidos intensos.',
+        urlImg: 'productos/accesorios/acc_2.png',
         precio: 10000.0
     },
     {
         nombre: 'Mochila porta balon',
-        descripcion:'Mochila espaciosa diseñada para llevar tu balón de baloncesto de manera cómoda y segura a donde quiera que vayas.',
-        urlImg:'productos/accesorios/acc_3.png',
+        descripcion: 'Mochila espaciosa diseñada para llevar tu balón de baloncesto de manera cómoda y segura a donde quiera que vayas.',
+        urlImg: 'productos/accesorios/acc_3.png',
         precio: 10000.0
     }
 ]
 
-function cargarTarjetasAccesorios(){
+function cargarTarjetasAccesorios() {
     const cards = document.getElementById('card-accesorios')
-    if (cards){
-    
-    
-    for( let i = 0 ; i < accesorios.length; i++){
-        const object = accesorios[i];
-        
-        cards.innerHTML += armarTarjetaAccs(object);
-    };
+    if (cards) {
+
+
+        for (let i = 0; i < accesorios.length; i++) {
+            const object = accesorios[i];
+
+            cards.innerHTML += armarTarjetaAccs(object);
+        };
     }
-        
+
 }
 
-function armarTarjetaAccs(objeto){
+function armarTarjetaAccs(objeto) {
     return `<div class="col-sm-4 center">
     <div class="card product" style="width: 18rem;">
         <img src=${objeto.urlImg} class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title center">${objeto.nombre}</h5>
             <p class="card-text">${objeto.descripcion}</p>
-            <a href="#" class="btn btn-primary d-flex justify-content-center align-items-center">Comprar</a>
+            <a href="#" class="btn btn-primary d-flex justify-content-center align-items-center btn-comprar">Comprar</a>
             </div>
         </div>
 </div>`
@@ -260,69 +287,69 @@ function armarTarjetaAccs(objeto){
 // funcionalidad poleras //
 
 camisas = [
-        {
-            nombre: 'Celtic N°0',
-            descripcion: 'Celti N°0 Version adulto 2024',
-            urlImg: 'productos/camisas/cam_1.png',
-            precio: 15000.0
-        },
-        {
-            nombre: 'Warriors N°4',
-            descripcion: 'Warrios N°4 Version adulto 2024',
-            urlImg: 'productos/camisas/cam_2.png',
-            precio: 16000.0
-        },
-        {
-            nombre: 'Bulls N°23',
-            descripcion: 'Bulls N°23 Version adulto 2024',
-            urlImg: 'productos/camisas/cam_3.png',
-            precio: 20000.0
-        },
-        {
-            nombre: 'Celtic N°0',
-            descripcion: 'Celtic N°0 Version Niño',
-            urlImg: 'productos/camisas/cam_1.png',
-            precio: 10000.0
-        },
-        {
-            nombre: 'Warriors N°4',
-            descripcion: 'Warriors N°4 Version Niño',
-            urlImg: 'productos/camisas/cam_2.png',
-            precio: 8000.0
-        },
-        {
-            nombre: 'Bulls N°23',
-            descripcion: 'Bulls N°23 Version Niño',
-            urlImg: 'productos/camisas/cam_3.png',
-            precio: 12000.0
-        }
-    ]
+    {
+        nombre: 'Celtic N°0',
+        descripcion: 'Celti N°0 Version adulto 2024',
+        urlImg: 'productos/camisas/cam_1.png',
+        precio: 15000.0
+    },
+    {
+        nombre: 'Warriors N°4',
+        descripcion: 'Warrios N°4 Version adulto 2024',
+        urlImg: 'productos/camisas/cam_2.png',
+        precio: 16000.0
+    },
+    {
+        nombre: 'Bulls N°23',
+        descripcion: 'Bulls N°23 Version adulto 2024',
+        urlImg: 'productos/camisas/cam_3.png',
+        precio: 20000.0
+    },
+    {
+        nombre: 'Celtic N°0',
+        descripcion: 'Celtic N°0 Version Niño',
+        urlImg: 'productos/camisas/cam_1.png',
+        precio: 10000.0
+    },
+    {
+        nombre: 'Warriors N°4',
+        descripcion: 'Warriors N°4 Version Niño',
+        urlImg: 'productos/camisas/cam_2.png',
+        precio: 8000.0
+    },
+    {
+        nombre: 'Bulls N°23',
+        descripcion: 'Bulls N°23 Version Niño',
+        urlImg: 'productos/camisas/cam_3.png',
+        precio: 12000.0
+    }
+]
 
-    function cargarTarjetasPolera() {
-        const elemento = document.getElementById('cards-poleras');
+function cargarTarjetasPolera() {
+    const elemento = document.getElementById('cards-poleras');
 
-        if(elemento) {
-            for(let i = 0; i < camisas.length; i++ ) {
-                const polera = camisas[i];
-                elemento.innerHTML += armarTarjetaPoleras(polera);
-            }
+    if (elemento) {
+        for (let i = 0; i < camisas.length; i++) {
+            const polera = camisas[i];
+            elemento.innerHTML += armarTarjetaPoleras(polera);
         }
     }
+}
 1
-    function armarTarjetaPoleras(objeto){
-        return `
+function armarTarjetaPoleras(objeto) {
+    return `
         <div class="col-sm-4 center">
             <div class="card product" style="width: 18rem;">
                 <img src="${objeto.urlImg}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title center">${objeto.nombre}</h5>
                     <p class="card-text">${objeto.descripcion}</p>
-                    <a href="#" class="btn btn-primary d-flex justify-content-center align-items-center">Comprar</a>
+                    <a href="#" class="btn btn-primary d-flex justify-content-center align-items-center btn-comprar">Comprar</a>
                     </div>
                 </div>
         </div>
         `
-    }
+}
 
 
 
