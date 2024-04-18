@@ -83,6 +83,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    cargarTarjetasAccesorios();
+
     let resumen = document.getElementById('resumen-carrito');
     htmlResumen = actualizarCarrito(valores);
     resumen.innerHTML = htmlResumen;
@@ -157,6 +159,13 @@ function agregarACarrito(balon) {
     guardarCarrito();
 }
 
+function agregarACarrito2(accesorio) {
+    console.log('Mostrando detalles del objeto:', accesorio);
+    itemsCarrito.push(accesorio);
+    recargarCarrito();
+    guardarCarrito();
+}
+
 function guardarCarrito() {
     localStorage.setItem('carrito', JSON.stringify(itemsCarrito));
 }
@@ -193,4 +202,54 @@ function agregarAlResumen() {
     calcularEnvio();
     
     recargarValores();
+}
+
+//FUNCIONALIDAD ACCESORIOS
+
+accesorios = [
+    {
+        nombre: 'Aro con malla',
+        descripcion:'Aro resistente con malla duradera para practicar tus tiros y mejorar tu precisión en cada juego y entrenamiento.',
+        urlImg:'productos/accesorios/acc_1.png',
+        precio: 10000.0
+    },
+    {
+        nombre: 'Muñequera',
+        descripcion:'Muñequera de diseño elegante en rojo con línea blanca, brindando estilo y soporte durante tus partidos intensos.',
+        urlImg:'productos/accesorios/acc_2.png',
+        precio: 10000.0
+    },
+    {
+        nombre: 'Mochila porta balon',
+        descripcion:'Mochila espaciosa diseñada para llevar tu balón de baloncesto de manera cómoda y segura a donde quiera que vayas.',
+        urlImg:'productos/accesorios/acc_3.png',
+        precio: 10000.0
+    }
+]
+
+function cargarTarjetasAccesorios(){
+    const cards = document.getElementById('card-accesorios')
+    if (cards){
+    
+    
+    for( let i = 0 ; i < accesorios.length; i++){
+        const object = accesorios[i];
+        
+        cards.innerHTML += armarTarjetaAccs(object);
+    };
+    }
+        
+}
+
+function armarTarjetaAccs(objeto){
+    return `<div class="col-sm-4 center">
+    <div class="card product" style="width: 18rem;">
+        <img src=${objeto.urlImg} class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title center">${objeto.nombre}</h5>
+            <p class="card-text">${objeto.descripcion}</p>
+            <a href="#" class="btn btn-primary d-flex justify-content-center align-items-center">Comprar</a>
+            </div>
+        </div>
+</div>`
 }
