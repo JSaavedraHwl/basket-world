@@ -74,6 +74,9 @@ function elementoCarrito(item) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    cargarTarjetasPolera();
+
     agregarAlResumen();
     const carrito = JSON.parse(localStorage.getItem('carrito'));
     if (carrito) {
@@ -253,3 +256,74 @@ function armarTarjetaAccs(objeto){
         </div>
 </div>`
 }
+
+// funcionalidad poleras //
+
+camisas = [
+        {
+            nombre: 'Celtic N°0',
+            descripcion: 'Celti N°0 Version adulto 2024',
+            urlImg: 'productos/camisas/cam_1.png',
+            precio: 15000.0
+        },
+        {
+            nombre: 'Warriors N°4',
+            descripcion: 'Warrios N°4 Version adulto 2024',
+            urlImg: 'productos/camisas/cam_2.png',
+            precio: 16000.0
+        },
+        {
+            nombre: 'Bulls N°23',
+            descripcion: 'Bulls N°23 Version adulto 2024',
+            urlImg: 'productos/camisas/cam_3.png',
+            precio: 20000.0
+        },
+        {
+            nombre: 'Celtic N°0',
+            descripcion: 'Celtic N°0 Version Niño',
+            urlImg: 'productos/camisas/cam_1.png',
+            precio: 10000.0
+        },
+        {
+            nombre: 'Warriors N°4',
+            descripcion: 'Warriors N°4 Version Niño',
+            urlImg: 'productos/camisas/cam_2.png',
+            precio: 8000.0
+        },
+        {
+            nombre: 'Bulls N°23',
+            descripcion: 'Bulls N°23 Version Niño',
+            urlImg: 'productos/camisas/cam_3.png',
+            precio: 12000.0
+        }
+    ]
+
+    function cargarTarjetasPolera() {
+        const elemento = document.getElementById('cards-poleras');
+
+        if(elemento) {
+            for(let i = 0; i < camisas.length; i++ ) {
+                const polera = camisas[i];
+                elemento.innerHTML += armarTarjetaPoleras(polera);
+            }
+        }
+    }
+1
+    function armarTarjetaPoleras(objeto){
+        return `
+        <div class="col-sm-4 center">
+            <div class="card product" style="width: 18rem;">
+                <img src="${objeto.urlImg}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title center">${objeto.nombre}</h5>
+                    <p class="card-text">${objeto.descripcion}</p>
+                    <a href="#" class="btn btn-primary d-flex justify-content-center align-items-center">Comprar</a>
+                    </div>
+                </div>
+        </div>
+        `
+    }
+
+
+
+
