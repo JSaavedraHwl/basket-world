@@ -6,38 +6,46 @@ const valores = {
 }
 
 let itemsCarrito = [];
-balones = [
-    {
-        nombre: 'Balon 1',
-        descripcion: 'Esta balon es perfecto para iniciar en el mundo del basketball.',
-        urlImg: 'src/prdct_1.png',
-        precio: 8000.0
-    },
-    {
-        nombre: 'Balon 2',
-        descripcion: 'Ideal para partidos casuales en la playa o en el parque.',
-        urlImg: 'src/prdct_2.png',
-        precio: 10000.0
-    },
-    {
-        nombre: 'Balon 3',
-        descripcion: 'Un balón resistente y duradero, diseñado para jugadores de todos los niveles.',
-        urlImg: 'src/prdct_3.png',
-        precio: 3000.0
-    },
-    {
-        nombre: 'Balon 4',
-        descripcion: 'Con un diseño llamativo y colores brillantes, este balón es perfecto para destacar en la cancha.',
-        urlImg: 'src/prdct_1.png',
-        precio: 5000.0
-    },
-    {
-        nombre: 'Balon 5',
-        descripcion: 'Un balón de alta calidad con un agarre superior y un rebote consistente.',
-        urlImg: 'src/prdct_2.png',
-        precio: 6000.0
-    }
-]
+// let balones = [
+//     {
+//         nombre: 'Balon 1',
+//         descripcion: 'Esta balon es perfecto para iniciar en el mundo del basketball.',
+//         urlImg: 'src/prdct_1.png',
+//         precio: 8000.0
+//     },
+//     {
+//         nombre: 'Balon 2',
+//         descripcion: 'Ideal para partidos casuales en la playa o en el parque.',
+//         urlImg: 'src/prdct_2.png',
+//         precio: 10000.0
+//     },
+//     {
+//         nombre: 'Balon 3',
+//         descripcion: 'Un balón resistente y duradero, diseñado para jugadores de todos los niveles.',
+//         urlImg: 'src/prdct_3.png',
+//         precio: 3000.0
+//     },
+//     {
+//         nombre: 'Balon 4',
+//         descripcion: 'Con un diseño llamativo y colores brillantes, este balón es perfecto para destacar en la cancha.',
+//         urlImg: 'src/prdct_1.png',
+//         precio: 5000.0
+//     },
+//     {
+//         nombre: 'Balon 5',
+//         descripcion: 'Un balón de alta calidad con un agarre superior y un rebote consistente.',
+//         urlImg: 'src/prdct_2.png',
+//         precio: 6000.0
+//     }
+// ]
+let balones = [];
+
+const consumirApi = async (url) => {
+    const response = (await fetch(url))
+    const parsedResponse = await response.json();
+    console.log(parsedResponse);
+    return parsedResponse;
+}
 function armarTarjeta(item) {
     console.log('url balon', item.urlImg)
     return `
@@ -73,10 +81,16 @@ function elementoCarrito(item) {
     `
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
+
+    if (document.title === 'Balones') {
+        balones = await consumirApi('https://63f7815f833c7c9c6085d07b.mockapi.io/api/v1/planes-netflix/balones');
+    }
+    if (document.title.trim() === 'Camisas') {
+        camisas = await consumirApi('https://63f7815f833c7c9c6085d07b.mockapi.io/api/v1/planes-netflix/camisas');
+    }
 
     cargarTarjetasPolera();
-
     agregarAlResumen();
     const carrito = JSON.parse(localStorage.getItem('carrito'));
     if (carrito) {
@@ -85,7 +99,6 @@ document.addEventListener('DOMContentLoaded', function () {
             recargarCarrito();
         }
     }
-
     cargarTarjetasAccesorios();
 
     let resumen = document.getElementById('resumen-carrito');
@@ -286,45 +299,45 @@ function armarTarjetaAccs(objeto) {
 
 // funcionalidad poleras //
 
-camisas = [
-    {
-        nombre: 'Celtic N°0',
-        descripcion: 'Celti N°0 Version adulto 2024',
-        urlImg: 'productos/camisas/cam_1.png',
-        precio: 15000.0
-    },
-    {
-        nombre: 'Warriors N°4',
-        descripcion: 'Warrios N°4 Version adulto 2024',
-        urlImg: 'productos/camisas/cam_2.png',
-        precio: 16000.0
-    },
-    {
-        nombre: 'Bulls N°23',
-        descripcion: 'Bulls N°23 Version adulto 2024',
-        urlImg: 'productos/camisas/cam_3.png',
-        precio: 20000.0
-    },
-    {
-        nombre: 'Celtic N°0',
-        descripcion: 'Celtic N°0 Version Niño',
-        urlImg: 'productos/camisas/cam_1.png',
-        precio: 10000.0
-    },
-    {
-        nombre: 'Warriors N°4',
-        descripcion: 'Warriors N°4 Version Niño',
-        urlImg: 'productos/camisas/cam_2.png',
-        precio: 8000.0
-    },
-    {
-        nombre: 'Bulls N°23',
-        descripcion: 'Bulls N°23 Version Niño',
-        urlImg: 'productos/camisas/cam_3.png',
-        precio: 12000.0
-    }
-]
-
+// camisas = [
+//     {
+//         nombre: 'Celtic N°0',
+//         descripcion: 'Celti N°0 Version adulto 2024',
+//         urlImg: 'productos/camisas/cam_1.png',
+//         precio: 15000.0,
+//     },
+//     {
+//         nombre: 'Warriors N°4',
+//         descripcion: 'Warrios N°4 Version adulto 2024',
+//         urlImg: 'productos/camisas/cam_2.png',
+//         precio: 16000.0
+//     },
+//     {
+//         nombre: 'Bulls N°23',
+//         descripcion: 'Bulls N°23 Version adulto 2024',
+//         urlImg: 'productos/camisas/cam_3.png',
+//         precio: 20000.0
+//     },
+//     {
+//         nombre: 'Celtic N°0',
+//         descripcion: 'Celtic N°0 Version Niño',
+//         urlImg: 'productos/camisas/cam_1.png',
+//         precio: 10000.0
+//     },
+//     {
+//         nombre: 'Warriors N°4',
+//         descripcion: 'Warriors N°4 Version Niño',
+//         urlImg: 'productos/camisas/cam_2.png',
+//         precio: 8000.0
+//     },
+//     {
+//         nombre: 'Bulls N°23',
+//         descripcion: 'Bulls N°23 Version Niño',
+//         urlImg: 'productos/camisas/cam_3.png',
+//         precio: 12000.0
+//     }
+// ]
+let camisas = [];
 function cargarTarjetasPolera() {
     const elemento = document.getElementById('cards-poleras');
 
