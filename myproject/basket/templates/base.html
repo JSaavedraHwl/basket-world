@@ -1,0 +1,149 @@
+{% load static %}
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="{% static 'js/login.js' %}"></script>
+    <title>{% block title %}Mi Sitio Web{% endblock %}</title>
+    <script>
+        const staticBaseUrl = "{% static 'img/' %}";
+    </script>
+    <!-- Aquí puedes incluir tus estilos CSS, scripts, etc. -->
+</head>
+<body>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-body-custom">
+    <div class="container-fluid">
+        <a href="{% url 'index' %}">
+            <img class="nav-icon" src="{% static 'img/ball.png' %}" width="50px" style="padding: 4px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown" style="margin-top:1.5px">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
+                            Productos
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'productos' categoria='balones' %}">Balones</a></li>
+                            <li><a class="dropdown-item" href="{% url 'productos' categoria='camisetas' %}">Poleras</a></li>
+                            <li><a class="dropdown-item" href="{% url 'productos' categoria='accesorios' %}">Accesorios</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'quienes_somos' %}">Quienes Somos</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                <button class="btn btn-outline-success btn-buscar" type="submit">Buscar</button>
+            </form>
+            <div class="btn-iniciar-sesion">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Iniciar Sesión
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+<!--BOTON CARRITO FLOTANTE-->
+<button class="btn btn-primary fixed-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+    <img src="{% static 'img/src/carrito.png' %}" class="carrito">
+</button>
+<!--MODAL INICIAR SESIÓN-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Iniciar Sesion</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Mantener sesión iniciada.</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contenido de la página -->
+<div class="content-wrapper">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<!-- CARRITO -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" data-bs-backdrop="false">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrito</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body" id="contenedor-carrito">
+        <!-- Contenido del carrito -->
+    </div>
+    <div class="col-md-12" id="resumen-carrito">
+        <!-- Resumen del carrito -->
+    </div>
+</div>
+
+<!--FOOTER-->
+<footer>
+    <div>
+        <div class="container cont-foot">
+            <div class="row">
+                <div class="col-sm-9">
+                    <h3>Basketball World®</h3>
+                </div>
+                <div class="col-sm">
+                    <h3>Información</h3>
+                    <ul>
+                        <li>Contáctanos</li>
+                        <li>Preguntas frecuentes</li>
+                        <li>Aviso de privacidad</li>
+                        <li>Información legal</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <p style="font-size: 7.5pt;">Basketball World®, todos los derechos reservados.</p>
+                </div>
+                <div class="col-sm-4 center">
+                    <img src="{% static 'img/src/fb.png' %}" class="social-media-icon">
+                    <img src="{% static 'img/src/tt.png' %}" class="social-media-icon">
+                    <img src="{% static 'img/src/ig.png' %}" class="social-media-icon">
+                    <img src="{% static 'img/src/yt.png' %}" class="social-media-icon">
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="{% static 'js/balones.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!-- inicio.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Camisas
+{% endblock %}
+
+{% block content %}
+  <!-- ELEMENTOS UNICOS DE ESTA PAGINA -->
+  <div class="container-fluid bg-div-b">
+    <div class="container">
+      <div class="row">
+        <div class="col-md">
+          <img src="{% static 'img/productos/carrousel/crrsl1_1.png' %}" width="600px" />
+        </div>
+        <div class="col-md">
+          <img src="{% static 'img/productos/carrousel/crrsl2_1.png' %}" width="600px" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid justify-content-center d-flex align-items-center bg-div-b">
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" style="max-width: 640px;">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="100">
+          <img src="{% static 'img/productos/camisas/accs_banner.png' %}" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <img src="{% static 'img/productos/camisas/quienes_banner.png' %}" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'img/productos/camisas/camisa_banner.png' %}" class="d-block w-100" alt="..." />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTAINER -->
+  <div class="bg-div-g">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="..." />
+        <strong class="me-auto">Bootstrap</strong>
+        <small>11 mins ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">Hello, world! This is a toast message.</div>
+    </div>
+    <div class="container text-center" style="padding-bottom: 100px;">
+      <h1 style="padding: 50px;">Basketball world</h1>
+      <div class="row">
+        <div class="col-sm center">
+          <!-- CARDS -->
+
+          <div class="card" style="width: 18rem;">
+            <img src="{% static 'img/productos/card/card_1.png' %}" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Accesorios</h5>
+              <p class="card-text">Descubre nuestra selección de accesorios de baloncesto de alta calidad para elevar tu juego al máximo nivel.</p>
+              <a href="accsesorios.html" class="btn btn-primary">Vamos</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm center">
+          <div class="card" style="width: 18rem;">
+            <img src="{% static 'img/productos/card/card_2.png' %}" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">¿Quienes somos?</h5>
+              <p class="card-text">Somos una comunidad dedicada al baloncesto, ofreciendo productos de calidad y contenido inspirador para jugadores de todos los niveles.</p>
+              <a href="quienesSomos.html" class="btn btn-primary">Vamos</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm center">
+          <div class="card" style="width: 18rem;">
+            <img src="{% static 'img/productos/card/card_3.png' %}" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">Balones</h5>
+              <p class="card-text">Encuentra el balón perfecto para tu juego entre nuestra variedad de balones diseñados para un rendimiento excepcional en la cancha.</p>
+              <a href="balones.html" class="btn btn-primary">Vamos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

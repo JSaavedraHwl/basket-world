@@ -38,7 +38,7 @@ let itemsCarrito = [];
 //         precio: 6000.0
 //     }
 // ]
-let balones = [];
+let productos = [];
 
 const consumirApi = async (url) => {
     const response = (await fetch(url))
@@ -51,7 +51,7 @@ function armarTarjeta(item) {
     return `
     <div class="col-sm-4 center tarjeta"> <!-- Aquí se agrega la clase .tarjeta -->
         <div class="card product" style="width: 18rem;">
-            <img src="${item.urlImg}" class="card-img-top" alt="...">
+            <img src="{% static img/${item.urlImg}%}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title center">${item.nombre}</h5>
                 <p class="card-text">${item.descripcion}</p>
@@ -67,7 +67,7 @@ function elementoCarrito(item) {
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="${item.urlImg}" class="img-fluid rounded-start" alt="...">
+                    <img src="#" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -82,24 +82,39 @@ function elementoCarrito(item) {
 }
 
 document.addEventListener('DOMContentLoaded', async function () {
-
+    var botonesProductos = document.querySelectorAll('.btn-comprar');
+    productos = await consumirApi('/obtener_productos/'+ document.title.toLowerCase());
+    // Agregar un controlador de eventos click a cada botón
+    botonesProductos.forEach(function(boton) {
+        boton.addEventListener('click', function(event) {
+            // Obtener el ID del botón clickeado
+            console.log('hola')
+            let idProducto = event.target.id;
+            
+            const producto = productos.find((item)=> item.id == idProducto);
+            agregarACarrito(producto);
+            console.log(producto);
+        });
+    });
     if (document.title === 'Balones') {
-        balones = await consumirApi('https://63f7815f833c7c9c6085d07b.mockapi.io/api/v1/planes-netflix/balones');
+        //balones = await consumirApi('https://63f7815f833c7c9c6085d07b.mockapi.io/api/v1/planes-netflix/balones');
     }
     if (document.title.trim() === 'Camisas') {
-        camisas = await consumirApi('https://63f7815f833c7c9c6085d07b.mockapi.io/api/v1/planes-netflix/camisas');
+        //camisas = await consumirApi('https://63f7815f833c7c9c6085d07b.mockapi.io/api/v1/planes-netflix/camisas');
     }
 
-    cargarTarjetasPolera();
+    if( camisas.length > 0) {
+        cargarTarjetasPolera();
+    }
     agregarAlResumen();
     const carrito = JSON.parse(localStorage.getItem('carrito'));
     if (carrito) {
-        itemsCarrito = carrito;
+        itemsCarrito = carrito; 
         if (itemsCarrito.length > 0) {
             recargarCarrito();
         }
     }
-    cargarTarjetasAccesorios();
+    //cargarTarjetasAccesorios();
 
     let resumen = document.getElementById('resumen-carrito');
     htmlResumen = actualizarCarrito(valores);
@@ -287,7 +302,7 @@ function cargarTarjetasAccesorios() {
 function armarTarjetaAccs(objeto) {
     return `<div class="col-sm-4 center">
     <div class="card product" style="width: 18rem;">
-        <img src=${objeto.urlImg} class="card-img-top" alt="...">
+        <img src="https://basketworld.com/5494-large_default/jordan-jumpman-wristband-red.jpg" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title center">${objeto.nombre}</h5>
             <p class="card-text">${objeto.descripcion}</p>
@@ -350,10 +365,11 @@ function cargarTarjetasPolera() {
 }
 1
 function armarTarjetaPoleras(objeto) {
+    console.log('estoy aca??')
     return `
         <div class="col-sm-4 center">
             <div class="card product" style="width: 18rem;">
-                <img src="${objeto.urlImg}" class="card-img-top" alt="...">
+                <img src="{% static 'img/productos/body/balon_img.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title center">${objeto.nombre}</h5>
                     <p class="card-text">${objeto.descripcion}</p>
