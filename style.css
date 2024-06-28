@@ -141,3 +141,30 @@ footer{
 .card-t-w{
     color: white;
 }
+
+.dropdown-btn{
+    border-radius: 0px !important;
+    background-color: black !important;
+}
+
+.dropdown-menu{
+    width: 100%;
+    color: white;
+    border-radius: 0px !important;
+    background-color: black !important;
+}
+
+.dropdown-item:hover{
+    color: black;
+}
+
+.card-ball{
+    height: 400px !important;
+}
+
+@media (min-width:520px) and (max-width:768.5px){
+    .card-ball{
+        margin-top: 100px;
+        margin-bottom: 100px
+    }
+}

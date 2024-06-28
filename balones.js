@@ -38,7 +38,23 @@ let itemsCarrito = [];
 //         precio: 6000.0
 //     }
 // ]
-let balones = [];
+let balones = [
+    {
+    descripcion:"Este balón es perfecto para iniciarse en el mundo del basketball."
+    },
+    {
+    descripcion:"Este balón es ideal para jugar partidos casuales de basketball."
+    },
+    {
+    descripcion:"Este balón es excelente para entrenamientos intensivos de basketball."
+    },
+    {
+    descripcion:"Este balón es adecuado para competiciones de basketball en interiores."
+    },
+    {
+    descripcion:"Este balón es fantástico para juegos de basketball al aire libre."
+    }
+];
 
 const consumirApi = async (url) => {
     const response = (await fetch(url))
@@ -47,14 +63,15 @@ const consumirApi = async (url) => {
     return parsedResponse;
 }
 function armarTarjeta(item) {
-    console.log('url balon', item.urlImg)
     return `
-    <div class="col-sm-4 center tarjeta"> <!-- Aquí se agrega la clase .tarjeta -->
-        <div class="card product" style="width: 18rem;">
+    <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="card card-ball product">
             <img src="${item.urlImg}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title center">${item.nombre}</h5>
-                <p class="card-text">${item.descripcion}</p>
+                <p class="card-text"">${item.descripcion}</p>
+            </div>
+            <div class="card-footer">
                 <a href="#" class="btn btn-primary d-flex justify-content-center align-items-center btn-comprar">Comprar</a>
             </div>
         </div>
@@ -84,7 +101,7 @@ function elementoCarrito(item) {
 document.addEventListener('DOMContentLoaded', async function () {
 
     if (document.title === 'Balones') {
-        balones = await consumirApi('https://63f7815f833c7c9c6085d07b.mockapi.io/api/v1/planes-netflix/balones');
+        balones = await consumirApi('https://667efe6bf2cb59c38dc7b9d8.mockapi.io/api/v1/balones');
     }
     if (document.title.trim() === 'Camisas') {
         camisas = await consumirApi('https://63f7815f833c7c9c6085d07b.mockapi.io/api/v1/planes-netflix/camisas');
