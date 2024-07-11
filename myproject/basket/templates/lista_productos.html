@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Mantenedor de productos
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Listado de Productos</h2>
+    <a href="{% url 'agregar_productos' %}" class="btn btn-success">Agregar Producto</a>
+    <div class="row">
+        {% for producto in productos %}
+        <div class="col-md-4 mt-3">
+            <div class="card">
+                <img src="{% static 'img/'|add:producto.urlImg %}" class="card-img-top" alt="{{ producto.nombre }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">{{ producto.descripcion }}</p>
+                    <p class="card-text"><strong>Precio:</strong> ${{ producto.precio }}</p>
+                    <p class="card-text"><strong>Categoría:</strong> {{ producto.id_categoria.categoria }}</p>
+                    <a href="{% url 'editar_producto' id=producto.id%}" class="btn btn-primary">Editar</a>
+                    <a href="{% url 'eliminar_producto' id=producto.id%}" class="btn btn-danger">Eliminar</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col">
+            <p>No hay productos disponibles.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

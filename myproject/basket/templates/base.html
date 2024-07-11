@@ -40,6 +40,7 @@
                             <li><a class="dropdown-item" href="{% url 'productos' categoria='balones' %}">Balones</a></li>
                             <li><a class="dropdown-item" href="{% url 'productos' categoria='camisetas' %}">Poleras</a></li>
                             <li><a class="dropdown-item" href="{% url 'productos' categoria='accesorios' %}">Accesorios</a></li>
+                            <li><a class="dropdown-item" href="{% url 'crud_productos' %}">Mantenedor productos</a></li>
                         </ul>
                     </div>
                 </li>
@@ -72,19 +73,21 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Correo</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1" class="form-label">Usuario</label>
+                        <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                     </div>
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Mantener sesión iniciada.</label>
                     </div>
+                    <a href="{% url 'register'%}">Registrarse aqui!</a>
                     <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
                 </form>
             </div>
@@ -92,11 +95,43 @@
     </div>
 </div>
 
+
 <!-- Contenido de la página -->
 <div class="content-wrapper">
     {% block content %}
     {% endblock %}
 </div>
+
+<div aria-live="polite" aria-atomic="true" style="width=100%">     
+    <div id="toastContainer" class="toast-container position-absolute bottom-0 end-0 p-3" >
+        <!-- Los toasts irán aquí -->
+    </div>
+</div>
+{% if messages %}
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    {% for message in messages %}
+    console.log('{{ message }}');
+    var toastEl = document.createElement('div');
+    toastEl.classList.add('toast', 'show', 'align-items-center', 'text-white', 'bg-danger', 'border-0');
+    toastEl.role = 'alert';
+    toastEl.ariaLive = 'assertive';
+    toastEl.ariaAtomic = 'true';
+    toastEl.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                {{ message }}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    `;
+    document.getElementById('toastContainer').appendChild(toastEl);
+    var toast = new bootstrap.Toast(toastEl);
+    toast.show();
+    {% endfor %}
+});
+</script>
+{% endif %}
 
 <!-- CARRITO -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" data-bs-backdrop="false">
