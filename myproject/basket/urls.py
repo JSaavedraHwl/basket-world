@@ -12,4 +12,5 @@ urlpatterns = [
     path('eliminar_producto/<str:id>', views.eliminar_producto, name='eliminar_producto'),
     path('login', views.vista_login, name='login'),
     path('register', views.register, name='register'),
+    path('logout', views.vista_logout, name='logout'),
 ]

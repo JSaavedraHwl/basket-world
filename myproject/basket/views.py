@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.http import JsonResponse
 from django.templatetags.static import static
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms.producto_form import ProductoForm
 from .forms.usuario_form import UsuarioForm
 from .models import Producto
@@ -104,3 +104,9 @@ def register(request):
     else:
         form = UsuarioForm()
     return render(request, 'register.html', {'form': form})
+
+def vista_logout(request):
+    if request.method == 'GET':
+        logout(request)
+        messages.error(request, 'Se ha cerrado la sesión')
+    return redirect('index')
